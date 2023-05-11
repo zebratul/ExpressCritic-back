@@ -20,11 +20,17 @@ router.get('/', async (req, res) => {
         { association: 'author' },
         {
           association: 'art_piece',
-          include: {
-            model: Category,
-            as: 'category',
-            attributes: ['name'],
-          },
+          include: [
+            {
+              model: Category,
+              as: 'category',
+              attributes: ['name'],
+            },
+            {
+              model: UserRating,
+              as: 'ratings',
+            },
+          ],
         },
         {
           model: Tag,
@@ -69,11 +75,17 @@ router.get('/popular', async (req, res) => {
         { association: 'author' },
         {
           association: 'art_piece',
-          include: {
-            model: Category,
-            as: 'category',
-            attributes: ['name'],
-          },
+          include: [
+            {
+              model: Category,
+              as: 'category',
+              attributes: ['name'],
+            },
+            {
+              model: UserRating,
+              as: 'ratings',
+            },
+          ],
         },
         {
           model: Tag,
@@ -121,11 +133,17 @@ router.get('/myreviews', async (req, res) => {
         { association: 'author' },
         {
           association: 'art_piece',
-          include: {
-            model: Category,
-            as: 'category',
-            attributes: ['name'],
-          },
+          include: [
+            {
+              model: Category,
+              as: 'category',
+              attributes: ['name'],
+            },
+            {
+              model: UserRating,
+              as: 'ratings',
+            },
+          ],
         },
         {
           model: Tag,
@@ -168,11 +186,17 @@ router.get('/:id', async (req, res) => {
         { association: 'author' },
         {
           association: 'art_piece',
-          include: {
-            model: Category,
-            as: 'category',
-            attributes: ['name'],
-          },
+          include: [
+            {
+              model: Category,
+              as: 'category',
+              attributes: ['name'],
+            },
+            {
+              model: UserRating,
+              as: 'ratings',
+            },
+          ],
         },
         { association: 'tags' },
         { association: 'comments', include: { association: 'author' } },
@@ -376,11 +400,17 @@ router.put('/:id/like', checkAuth, async (req, res) => {
         { association: 'author' },
         {
           association: 'art_piece',
-          include: {
-            model: Category,
-            as: 'category',
-            attributes: ['name'],
-          },
+          include: [
+            {
+              model: Category,
+              as: 'category',
+              attributes: ['name'],
+            },
+            {
+              model: UserRating,
+              as: 'ratings',
+            },
+          ],
         },
         { association: 'tags' },
         { association: 'comments', include: { association: 'author' } },
