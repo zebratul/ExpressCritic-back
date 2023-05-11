@@ -25,7 +25,7 @@ class Server {
       console.log('Database connection has been established successfully.');
       
       const forceSync = process.env.FORCE_DB_SYNC === 'true';
-      await sequelize.sync({ force: forceSync });
+      // await sequelize.sync({ force: forceSync });
       console.log('Database sync complete.');
 
     } catch (error) {
