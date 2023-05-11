@@ -165,11 +165,17 @@ const searchReviewsByQuery  = async (req, res) => {
         { association: 'author' },
         {
           association: 'art_piece',
-          include: {
-            model: Category,
-            as: 'category',
-            attributes: ['name'],
-          },
+          include: [
+            {
+              model: Category,
+              as: 'category',
+              attributes: ['name'],
+            },
+            {
+              model: UserRating,
+              as: 'ratings',
+            },
+          ],
         },
         {
           model: Tag,
@@ -191,7 +197,7 @@ const searchReviewsByQuery  = async (req, res) => {
     });
 
 
-    console.log(reviews);
+    console.log(reviews.dataValues);
     res.status(200).json(reviews);
   } catch (error) {
     console.error(error);
