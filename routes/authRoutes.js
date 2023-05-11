@@ -49,7 +49,7 @@ router.post('/auth/google', async (req, res) => {
             secure: true,
             signed: true,
             maxAge: 24 * 60 * 60 * 1000,
-            sameSite: None,
+            sameSite: 'none',
         });
 
         res.status(200).json({ user });
@@ -74,7 +74,7 @@ router.post('/auth/github', async (req, res) => {
             secure: true,
             signed: true,
             maxAge: 24 * 60 * 60 * 1000,
-            sameSite: None,
+            sameSite: 'none',
         });
 
         res.status(200).json({ user });
