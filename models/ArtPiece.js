@@ -16,6 +16,7 @@ class ArtPiece extends Model {
     static associate(models) {
         this.belongsTo(models.Category, { foreignKey: 'category_id', as: 'category' });
         this.hasMany(models.Review, { foreignKey: 'art_piece_id', as: 'reviews' });
+        this.hasMany(models.UserRating, { foreignKey: 'art_piece_id', as: 'ratings' });
     }
 }
 

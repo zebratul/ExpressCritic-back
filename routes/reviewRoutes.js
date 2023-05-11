@@ -435,34 +435,34 @@ router.post('/comments', checkAuth, createComment);
 
 router.post('/:id/rating', checkAuth, async (req, res) => {
   try {
-    const review = await Review.findByPk(req.params.id);
+    const artPiece = await ArtPiece.findByPk(req.params.id);
 
-    if (!review) {
-      return res.status(404).json({ message: 'Review not found' });
+    if (!artPiece) {
+      return res.status(404).json({ message: 'Art piece not found' });
     }
 
-    const existingRating = await UserRating.findOne({ where: { user_id: req.userId, review_id: review.id } });
+    const existingRating = await UserRating.findOne({ where: { user_id: req.userId, art_piece_id: artPiece.id } });
 
     if (existingRating) {
-      await UserRating.update({ rating: req.body.rating }, { where: { user_id: req.userId, review_id: review.id } });
+      await UserRating.update({ rating: req.body.rating }, { where: { user_id: req.userId, art_piece_id: artPiece.id } });
     } else {
-      await UserRating.create({ user_id: req.userId, review_id: review.id, rating: req.body.rating });
+      await UserRating.create({ user_id: req.userId, art_piece_id: artPiece.id, rating: req.body.rating });
     }
 
-    const updatedReview = await Review.findByPk(req.params.id, {
+    const updatedArtPiece = await ArtPiece.findByPk(req.params.id, {
       include: [
         { association: 'ratings' },
-        { association: 'art_piece' },
       ],
     });
 
-    const averageRating = updatedReview.ratings.reduce((acc, curr) => acc + curr.rating, 0) / updatedReview.ratings.length;
-    res.json({ ...updatedReview.toJSON(), averageRating });
+    const averageRating = updatedArtPiece.ratings.reduce((acc, curr) => acc + curr.rating, 0) / updatedArtPiece.ratings.length;
+    res.json({ ...updatedArtPiece.toJSON(), averageRating });
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server error');
   }
 });
+
 
 router.put('/comments/:commentId/like', checkAuth, async (req, res) => {
   try {

@@ -12,10 +12,10 @@ class UserRating extends Model {
         });
     }
 
-  static associate(models) {
-      this.belongsTo(models.RevyUser, { foreignKey: 'user_id', as: 'user' });
-      this.belongsTo(models.Review, { foreignKey: 'review_id', as: 'review' });
-  }
+    static associate(models) {
+        this.belongsTo(models.RevyUser, { foreignKey: 'user_id', as: 'user' });
+        this.belongsTo(models.ArtPiece, { foreignKey: 'art_piece_id', as: 'art_piece' });
+    }
 }
 
 module.exports = { UserRating };
