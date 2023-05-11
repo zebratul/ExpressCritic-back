@@ -46,7 +46,8 @@ router.post('/auth/google', async (req, res) => {
 
         res.cookie('jwt', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            // secure: process.env.NODE_ENV === 'production',
+            secure: false,
             signed: true,
             maxAge: 24 * 60 * 60 * 1000,
             sameSite: 'lax',
