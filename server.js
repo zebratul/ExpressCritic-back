@@ -23,14 +23,7 @@ class Server {
     try {
       await sequelize.authenticate();
       console.log('Database connection has been established successfully.');
-  
-      const forceSync = process.env.FORCE_DB_SYNC === 'true';
-      if (forceSync) {
-        await sequelize.models.UserRating.sync({ force: true });
-        console.log('UserRating table recreated.');
-      } else {
-        await sequelize.sync();
-      }
+      await sequelize.sync();
       console.log('Database sync complete.');
     } catch (error) {
       console.error('Unable to connect to the database:', error);
