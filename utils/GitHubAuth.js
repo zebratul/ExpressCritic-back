@@ -40,7 +40,7 @@ class GitHubAuth {
       if (emailData.message === 'Bad credentials') {
         throw new Error('Bad credentials');
       }
-
+            
       const primaryEmail = emailData.find(email => email.primary);
 
       userData.email = primaryEmail.email; 

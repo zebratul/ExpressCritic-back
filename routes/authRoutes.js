@@ -46,11 +46,10 @@ router.post('/auth/google', async (req, res) => {
 
         res.cookie('jwt', token, {
             httpOnly: true,
-            // secure: process.env.NODE_ENV === 'production',
-            secure: false,
+            secure: true,
             signed: true,
             maxAge: 24 * 60 * 60 * 1000,
-            sameSite: 'lax',
+            sameSite: 'None',
         });
 
         res.status(200).json({ user });
@@ -72,10 +71,10 @@ router.post('/auth/github', async (req, res) => {
 
         res.cookie('jwt', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            secure: true,
             signed: true,
             maxAge: 24 * 60 * 60 * 1000,
-            sameSite: 'lax',
+            sameSite: 'None',
         });
 
         res.status(200).json({ user });
