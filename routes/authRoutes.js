@@ -46,7 +46,8 @@ router.post('/auth/google', async (req, res) => {
 
         res.cookie('jwt', token, {
             httpOnly: true,
-            secure: true,
+            secure: true, //prod
+            // secure: false, //dev
             signed: true,
             maxAge: 24 * 60 * 60 * 1000,
             sameSite: 'none',
@@ -71,7 +72,8 @@ router.post('/auth/github', async (req, res) => {
 
         res.cookie('jwt', token, {
             httpOnly: true,
-            secure: true,
+            secure: true, //prod
+            // secure: false, //dev
             signed: true,
             maxAge: 24 * 60 * 60 * 1000,
             sameSite: 'none',

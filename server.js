@@ -14,7 +14,8 @@ class Server {
   }
 
   initMiddlewares() {
-    this.app.use(cors({ origin: 'https://ec-prod-bwvc.vercel.app', credentials: true }));
+    this.app.use(cors({ origin: 'https://ec-prod-bwvc.vercel.app', credentials: true })); //prod
+    // this.app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
     this.app.use(express.json());
     this.app.use(cookieParser(process.env.COOKIE_SECRET));
   }
